@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+    <title>Document</title>
+    <style>
+        .main {
+            background-color: rgb(215, 239, 250);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5%;
+        }
+        .box {
+            padding: 2%;
+            height: 450px;
+            width: 250px;
+            border: 2px solid rgb(145, 153, 119);
+            margin: 2%;
+        }
+        .box img {
+            width: 90%;
+            height: auto;
+        }
+        .h1 {
+            text-align: center;
+            color: pink;
+            font-size: 20px;
+            background-color: black;
+            position: sticky;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="h1">
+        <h1>Products</h1>
+    </div>
+    <div class="main">
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box" ><img src="" style="height:220px;" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+        <div class="box"><img src="" alt=""><h2></h2><h1></h1><p></p></div>
+
+
+
+
+
+    </div>
+
+    <script>
+        let cards = document.querySelectorAll(".box");
+
+        async function getData() {
+            let response = await fetch("https://dummyjson.com/products");
+            let data = await response.json();
+
+            cards.forEach((element, i) => {
+                if (i < data.products.length) {
+                    const product = data.products[i];
+                    const imageUrl = product.images[0]; 
+
+                    
+                    if (imageUrl) {
+                        element.getElementsByTagName("img")[0].src = imageUrl;
+                    } else {
+                        element.getElementsByTagName("img")[0].alt = "Image not available"; 
+                    }
+
+                    element.getElementsByTagName("h2")[0].innerHTML = "Title: " + product.title;
+                    element.getElementsByTagName("p")[0].innerHTML = product.description;
+                }
+            });
+        }
+
+        getData();
+    </script>
+</body>
+</html>

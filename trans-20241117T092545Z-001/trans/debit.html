@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Debit Details</title>
+</head>
+<body>
+    <style>
+       
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+/* Main Container with Border */
+.main-container {
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    background-color: #fff;
+    border: 2px solid #4CAF50; /* Green border around the entire container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.acc {
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Debit Form Section */
+.debit-form {
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.debit-form h3 {
+    margin-bottom: 20px;
+}
+
+#debitAmount {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.debit-btn {
+    background-color: #FF5722;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.debit-btn:hover {
+    background-color: #e64a19;
+}
+
+/* Balance Section */
+.balance-section {
+    text-align: center;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.balance-section h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Navigation Buttons Section */
+.butt {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.butt button {
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.butt .btn1 {
+    background-color: #2196F3;
+    color: white;
+}
+
+.butt .btn2 {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.butt button:hover {
+    opacity: 0.9;
+}
+
+    </style>
+    <!-- Main Container with Border -->
+    <div class="main-container">
+        <!-- Header -->
+        <div class="acc">
+            <h1>DEBIT DETAILS</h1>
+        </div>
+
+        <!-- Debit Form Section -->
+        <div class="debit-form">
+            <h3>Enter Debit Amount</h3>
+            <input type="number" id="debitAmount" placeholder="Enter amount to debit" min="1" />
+            <button class="debit-btn" onclick="subtractDebit()">Debit Amount</button>
+        </div>
+
+        <!-- Balance Section -->
+        <div class="balance-section">
+            <h3>Current Balance: $<span id="currentBalance">1000</span></h3>
+        </div>
+
+        <!-- Navigation Buttons Section -->
+        <div class="butt">
+            <button class="btn1" onclick="goHome()">Home</button>
+            <button class="btn2" onclick="goCredit()">Credit</button>
+        </div>
+    </div>
+
+    <!-- External JS Script -->
+    <script src="debit.js"></script>
+    <script>
+        // Initialize the account balance from localStorage, or default to 1000 if not set
+        let updatedBalance = parseFloat(localStorage.getItem('balance')) || 1000;
+
+        // Function to display the updated balance on the page
+        function updateBalanceDisplay() {
+            document.getElementById('currentBalance').textContent = updatedBalance.toFixed(2);
+        }
+
+        // Initial display of balance when the page loads
+        updateBalanceDisplay();
+
+        function subtractDebit() {
+            let debitAmount = parseFloat(document.getElementById('debitAmount').value);
+
+            // Validate the debit amount
+            if (isNaN(debitAmount) || debitAmount <= 0) {
+                alert("Please enter a valid amount to debit.");
+            } else if (debitAmount > updatedBalance) {
+                alert("Insufficient balance! You cannot debit more than your current balance.");
+            } else {
+                // Subtract the debit amount from the current balance
+                updatedBalance -= debitAmount;
+
+                // Save the updated balance in localStorage
+                localStorage.setItem('balance', updatedBalance);
+
+                // Display the updated balance in an alert
+                alert(`$${debitAmount} has been debited from your account.`);
+                
+                // Update the displayed balance
+                updateBalanceDisplay();
+
+                // Clear the input field after successful debit
+                document.getElementById('debitAmount').value = '';
+            }
+        }
+
+        // Function to navigate to the Home page after PIN verification
+        function goHome() {
+            let pin = prompt("Enter your PIN:");
+            if (pin === '1234') {
+                window.location.href = 'dashboard.html'; // Redirect to home page
+            } else {
+                alert("Incorrect PIN");
+            }
+        }
+
+        // Function to navigate to the Credit page after PIN verification
+        function goCredit() {
+            let pin = prompt("Enter your PIN:");
+            if (pin === '1234') {
+                window.location.href = 'credit.html'; // Redirect to credit page
+            } else {
+                alert("Incorrect PIN");
+            }
+        }
+    </script>
+</body>
+</html>

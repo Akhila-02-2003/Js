@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Account Details</title>
+</head>
+<body>
+    <style>
+        .acc h1 {
+    text-align: center;
+    color: rgb(221, 95, 173);
+    padding-top: 2%;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.details {
+    background-color: rgb(57, 202, 163);
+    width: 30%;
+    line-height: 1.8;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 50px auto; /* Center the details box horizontally */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 18px;
+}
+
+.butt {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn1, .btn2, .btn3 {
+    padding: 15px 30px;
+    background-color: rgb(116, 84, 185);
+    margin: 0 15px;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn1:hover, .btn2:hover, .btn3:hover {
+    background-color: rgb(42, 45, 48);
+    color: white;
+    transform: translateY(-5px);
+}
+    </style>
+    
+    <div class="acc">
+        <h1>ACCOUNT DETAILS</h1>
+    </div>
+    <div class="details">
+        <h4>Account Holder :B.AKHILA</h4>
+        <h4>Account Number :524-843-170-695</h4>
+        <h4>Phone Number :9571384556</h4>
+        <h4>Account IFSC code :SBI8147025</h4>
+        <h4>Account Type :Savings Account</h4>
+        <h4>Bank Name :State Bank of India</h4>
+        <h4 id="accountBalance">Account Balance :1000</h4>
+    </div>
+    <div class="butt">
+        <button class="btn1" onclick="checkPin()">Home</button>
+        <button class="btn2" onclick="checkPin1()">Credit</button>
+        <button class="btn3" onclick="checkPin2()">Debit</button>
+    </div>
+
+    <script>
+        function checkPin() {
+            let pin = prompt("Enter your PIN:");
+            if(pin=== ""){
+                alert("Please enter the password");
+            }
+            else if(pin === '1234') {
+                window.location.href = 'index.html'; 
+            } else {
+                alert("Incorrect pin");
+            }
+        }
+
+        function checkPin1() {
+            let pin = prompt("Enter your PIN:");
+            if(pin=== ""){
+                alert("Please enter the password");
+            }
+            else if (pin === '1234') {
+                window.location.href = 'credit.html'; 
+            } else {
+                alert("Incorrect pin");
+            }
+        }
+
+        function checkPin2() {
+            let pin = prompt("Enter your PIN:1234");
+            if(pin=== ""){
+                alert("Please enter the password");
+            }
+            else if (pin === '1234') {
+                window.location.href =  'credit.html';
+            } else {
+                alert("Incorrect pin");
+            }
+        }
+
+        
+        let updatedBalance = parseFloat(localStorage.getItem('balance')) || 0;
+        document.getElementById('accountBalance').innerText = `Account Balance: $${updatedBalance.toFixed(2)}`;
+    </script>
+</body>
+</html>

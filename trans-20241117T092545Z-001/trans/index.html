@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking</title>
+    <link rel="stylesheet" href="styles.css">
+   
+
+</head>
+<body>
+    <style>
+        body {
+    
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    margin: 0;
+    width: 100%;
+    padding: 40px;
+   
+        }
+
+
+.login-container {
+    background-color: white;
+    padding: 100px;
+    border-radius: 20px;
+    text-align: center;
+    
+}
+
+h1 {
+    margin-bottom: 40px;
+    text-align: center;
+}
+.a1 {
+    margin-bottom: 15px;
+}
+
+input {
+    width: 20%;
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+#message {
+    margin-top: 10px;
+    text-align: center;
+    color: red;
+}
+
+#username, #password {
+    width: 90%;
+    padding: 8px;
+}
+
+#h1{
+padding-left: 530px;
+margin-top: 250px;
+
+}
+
+    </style>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="a1">
+                <label for="username">Username:Akhila</label>
+                <input type="text" id="username"  placeholder="Enter Username">
+            </div>
+            <div class="g1">
+                <label for="Password">Password:12345</label>
+                <input type="password" id="password" placeholder="Enter your Password" required>
+            </div>
+            <button type="submit" onclick="window.location.href='dashbord.html'">
+            Login</button>
+
+        </form>
+        <div id="message"></div>
+        </div>
+    </div>
+    </div>
+    <script>
+       document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const errorMessage = document.getElementById('error-message');
+
+    // Simple validation
+    if (username === "Akhila" && password === "12345") {
+        // Redirect to the dashboard page
+        window.location.href = "dashboard.html"; 
+        // Update this to your actual dashboard page
+        message.textContent = loginsuccessfull;
+    } else {
+        errorMessage.textContent = "Invalid username or password.";
+    }
+});
+    </script>
+    
+</body>
+</html>

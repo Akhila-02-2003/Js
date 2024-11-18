@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Men's Fashion</title>
+    <style>               
+        .k1 h1 {
+            text-align: center;
+            color: purple;
+        }
+
+        .men1 {
+            width: 360px;
+            height: 500px;
+            margin: 20px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .men1:hover {
+            transform: scale(1.05);
+        }
+
+        .men1 img {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+        }
+
+        .b5 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Hidden class for filtering */
+        .hidden {
+            display: none;
+        }
+
+        
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .men1 {
+                width: 90%; /* Make cards full width on small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="k1">
+        <h1>TROUSERS</h1>
+    </div>
+
+   
+
+    <!-- Filter Inputs for Price -->
+    <div style="text-align:center; margin-bottom: 20px;">
+        <label for="minPrice">Min Price:</label>
+        <input type="number" id="minPrice" placeholder="Minimum Price" />
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="maxPrice" placeholder="Maximum Price" />
+        <button onclick="filterByPrice()">Filter by Price</button>
+    </div>
+
+    <div class="b5">
+        <div class="men1" data-category="Trousers" data-price="1800">
+            <a href="men2.html"><img src="pictures/m12.avif" alt="INDIAN GARAGE Trousers"></a>
+            <h1>INDIAN GARAGE</h1>
+            <p>Price: ₹1800</p>
+          
+        </div>
+
+        <div class="men1" data-category="Trousers" data-price="1500">
+            <a href="#"><img src="pictures/m11.webp" alt="DENIM Trousers"></a>
+            <h1>DENIM</h1>
+            <p>Price: ₹1500</p>
+           
+        </div>
+
+        <div class="men1" data-category="Trousers" data-price="1200">
+            <a href="#"><img src="pictures/m13.avif" alt="NETPLAY Trousers"></a>
+            <h1>NETPLAY</h1>
+            <p>Price: ₹1200</p>
+            
+        </div>
+
+        <div class="men1" data-category="Trousers" data-price="1000">
+            <a href="#"><img src="pictures/m14.webp" alt="VAN HEUSEN Trousers"></a>
+            <h1>VAN HEUSEN</h1>
+            <p>Price: ₹1000</p>
+           
+        </div>
+
+        <div class="men1" data-category="Trousers" data-price="2500">
+            <a href="#"><img src="pictures/m15.avif" alt="ALLEN SOLLY Trousers"></a>
+            <h1>ALLEN SOLLY</h1>
+            <p>Price: ₹2500</p>
+           
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function filterByPrice() {
+            const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+            const maxPrice = parseInt(document.getElementById('maxPrice').value) || Infinity;
+            const items = document.querySelectorAll('.men1');
+
+            items.forEach(item => {
+                const price = parseInt(item.getAttribute('data-price'));
+                if (price >= minPrice && price <= maxPrice) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        
+    </script>
+</body>
+</html>
