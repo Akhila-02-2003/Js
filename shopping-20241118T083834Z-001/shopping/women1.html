@@ -3,77 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Women's Fashion</title>
     <style>
-        .a4{
+        /* Flexbox Layout for Display */
+        .a4 {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             padding-top: 30px;
         }
-        .a4 img{
-            width: 100%;
-          
-       }
-        .women{
+
+        /* Styling for each product block */
+        .women {
             width: 360px;
             height: 500px;
             margin: 20px;
             padding: 5px;
-            border: 1px solid;
+            border: 1px solid #ccc;
             border-radius: 10px;
-        }
-        .women img{
-          height:400px;
-          width:350px;
-        }
-        h1{
-          text-align: center;
+            box-sizing: border-box;
+            text-align: center;
         }
 
-        p{
-            text-align:center;
+        /* Styling for images */
+        .women img {
+            max-width: 100%;
+            height: auto; /* Keep aspect ratio */
+            border-radius: 5px;
+
+        }
+        .women:hover {
+            transform: scale(1.05);
         }
         
-        .k1{
-          color:purple;
+
+        /* Header Styling */
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
+
+        p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        .k1 {
+            color: purple;
+        }
+
+        /* Product Title Styling */
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+        }
+        .filter-button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: purple;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .filter-button:hover {
+            background-color: darkviolet;
+        }
+
     </style>
-    
 </head>
 <body>
-  <div class="k1">
-    <h1>MEN'S FASHION</h1>
+    <div class="k1">
+        <h1>WATCHES</h1>
+    </div>
+    <div style="text-align:center; margin-bottom: 20px;">
+      <label for="minPrice">Min Price:</label>
+      <input type="number" id="minPrice" placeholder="Minimum Price" />
+      <label for="maxPrice">Max Price:</label>
+      <input type="number" id="maxPrice" placeholder="Maximum Price" />
+      <button class="filter-button" onclick="filterByPrice()">Filter by Price</button>
   </div>
     <div class="a4">
-        <div class="men">
-           
-                      <a href="men0.html"> <img src="pictures/w20.webp" ></a>
-                        <h1>AAVASA MIX N MATCH</h1>
-                        <p>800</p>
-                     </div>
-                      <div class="men">
-                        <a href="women1.html"> <img src="pictures/w22.webp" ></a>
-                        <h1>AURELIA</h1>
-                        <p>500</p>
-                      </div>
-                      <div class="men">
-                          <a href="women2.html"> <img src="pictures/w23.webp" ></a>
-                        <h1>SRISTHI</h1>
-                        <p>300</p>
-                      </div>
-                      <div class="men">
-                        <a href="women3.html"> <img src="pictures/w21.jpg" ></a>
-                        <h1>LIBAS</h1>
-                        <p>1000</p>
-                      </div>
-                     <div class="men">
-                        <a href="women4.html"> <img src="pictures/w24.avif" ></a>
-                        <h1>ANOUK</h1>
-                        <p>600</p>
-                    </div>
-                    
-                   </div>
-            </body>
-            </html>
-            
+        <!-- Product 1 -->
+        <div class="women">
+            <a href="#">
+                <img src="pictures/w20.webp" alt="Titan Watch">
+            </a>
+            <h2>TITAN</h2>
+            <p>₹2000</p>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="women">
+            <a href="#">
+                <img src="pictures/w22.jpg" alt="Noise Watch">
+            </a>
+            <h2>NOISE</h2>
+            <p>₹1500</p>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="women" >
+            <a href="#">
+                <img src="pictures/w23.webp" alt="Calvin Klein Watch">
+            </a>
+            <h2>CALVIN KLEIN</h2>
+            <p>₹1300</p>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="women">
+            <a href="#">
+                <img src="pictures/w21.jpg" alt="Casio Watch">
+            </a>
+            <h2>CASIO</h2>
+            <p>₹1000</p>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="women">
+            <a href="#">
+                <img src="pictures/w24.jpg" alt="Fastrack Watch">
+            </a>
+            <h2>FASTRACK</h2>
+            <p>₹1600</p>
+        </div>
+    </div>
+    <script>
+      let cart = [];
+
+      function filterByPrice() {
+          const minPrice = parseInt(document.getElementById('minPrice').value) || 0;
+          const maxPrice = parseInt(document.getElementById('maxPrice').value) || Infinity;
+          const items = document.querySelectorAll('.women1');
+
+          items.forEach(item => {
+              const price = parseInt(item.getAttribute('data-price'));
+              if (price >= minPrice && price <= maxPrice) {
+                  item.classList.remove('hidden');
+              } else {
+                  item.classList.add('hidden');
+              }
+          });
+      }
+
+      
+  </script>
+</body>
+</html>
